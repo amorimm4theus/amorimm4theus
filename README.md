@@ -1,0 +1,5 @@
+- 👋 Hi, I’m @amorimm4theus
+- 👀 I’m interested in ... Php 
+- 🌱 I’m currently learning ... Laravel
+- 💞️ I’m looking to collaborate on ... Private company
+- 📫 How to reach me ... amorimm4theus@gmail.com
