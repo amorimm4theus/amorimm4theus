@@ -89,6 +89,7 @@ def snapshot(idx, override=None):
 
 
 SPEED = float(os.environ.get("SPEED", "1"))
+MIN_CELLS = 600
 step = 1.0 / fps
 t = 0.0
 next_frame = 0.0
@@ -98,9 +99,12 @@ with open(raw, "rb") as f, open(timing) as tl:
         delay, n = ln.split()
         t += float(delay) / SPEED
         while t >= next_frame:
+            next_frame += step
+            # pula o começo vazio: o primeiro quadro (que alguns leitores mostram parado) já tem cifra na tela
+            if idx == 0 and sum(c.data != " " for row in screen.buffer.values() for c in row.values()) < MIN_CELLS:
+                continue
             snapshot(idx)
             idx += 1
-            next_frame += step
         stream.feed(f.read(int(n)))
 last = snapshot(idx)
 
