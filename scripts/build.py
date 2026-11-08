@@ -372,6 +372,43 @@ def shop(t):
     return c.render(W, h, "Loja virtual sob medida: sua loja aberta 24 horas, com a cara da sua marca")
 
 
+def oss(t):
+    c = Canvas(t)
+    body = Canvas(t)  # mede o texto antes de desenhar o painel
+    yb = body.rich(44, 252, [("Leva uma API de Lumen para Laravel Octane e encontra o estado que vaza entre clientes "
+                              "no Swoole. Feito com TDD, testes de arquitetura e um benchmark que qualquer um roda.",
+                              BODY, t["muted"])], 24, 760, 35)
+    h = max(yb + 108, 380)
+    defs_glow(c, W - 200, 60, 640, t["glow"])
+    panel(c, W, h, glow="g", dots=True)
+    badge = "OPEN SOURCE"
+    bw = MONO.width(badge, 15, 2) + 36
+    c.add(f'<rect x="44" y="44" width="{bw:.1f}" height="32" rx="16" fill="{t["accent"]}"/>')
+    c.text(44 + bw / 2, 66, badge, MONO, 15, t["on_accent"], anchor="middle", ls=2)
+    c.text(44 + bw + 18, 66, "PLUGIN DO CLAUDE CODE · LARAVEL", MONO, 15, t["muted"], ls=2)
+    c.text(42, 140, "octane-ready", DISPLAY, 46, t["fg"], ls=-1)
+    c.text(42, 194, "API antiga mais rápida, sem vazar dados", DISPLAY, 38, t["accent_text"], ls=-1)
+    c.parts += body.parts
+    for k, v in body.used.items():
+        c.used.setdefault(k, set()).update(v)
+    cx, cy = 44, yb + 30
+    for tech in ["Laravel 13", "Octane", "Swoole", "Pest", "Claude Code"]:
+        cx += c.chip(cx, cy, tech, size=17) + 10
+    # números do benchmark, à direita
+    x = 900
+    c.add(f'<line x1="{x - 36}" y1="44" x2="{x - 36}" y2="{h - 44}" stroke="{t["line"]}" stroke-width="1.5"/>')
+    c.text(x - 4, 136, "1,8x", DISPLAY, 72, t["accent_text"], ls=-3)
+    c.text(x, 170, "mais requisições por segundo", BODY, 19, t["muted"])
+    c.text(x - 4, 256, "4x", DISPLAY, 72, t["accent_text"], ls=-3)
+    c.text(x, 290, "menos latência na mediana", BODY, 19, t["muted"])
+    label = "Ver no GitHub"
+    by = h - 52
+    c.text(x, by, label, SEMI, 23, t["accent_text"])
+    c.arrow(x + SEMI.width(label, 23) + 16, by - 8, 15, t["accent_text"], diag=True)
+    return c.render(W, h, "octane-ready, plugin open source do Claude Code: API antiga em Lumen levada para Laravel Octane, "
+                          "1,8x mais requisições por segundo, sem vazar dados entre clientes")
+
+
 SIGILO = [
     ("Plataforma de gestão de frotas", "Os dados precisavam passar para outros sistemas sozinhos e sem erro.",
      "Integrações financeira e de CIOT, entregues uma de cada vez.", "Logística / Integração"),
@@ -553,6 +590,7 @@ PIECES = {
         "Site em português, espanhol e inglês que recebe pedidos de orçamento. A loja virtual vem em seguida.",
         ["Next.js", "Laravel", "MySQL", "Docker"], ROOT / "scripts/shots/dimdim.jpg"),
     "shop": shop,
+    "oss-octane-ready": oss,
     "sigilo": sigilo,
     "sec-faco": lambda t: section(t, "02", "O que faço", "Problemas que eu resolvo: cada um talvez seja o que a sua empresa tem hoje"),
     "problems": problems,
@@ -599,6 +637,9 @@ README = [
     link("https://estanagel.amorim-co.de", pic("work-estanagel", "Estanagel Filmes, produtora audiovisual: página com cara de cinema que leva cada visitante para o WhatsApp do diretor")),
     link("https://dimdim.art.br", pic("work-dimdim", "DIMDIM Papelaria Criativa: site em três idiomas que recebe pedidos de orçamento")),
     link(f"{SITE}/#case-loja", pic("shop", "Loja virtual sob medida: sua loja aberta 24 horas, com a cara da sua marca")),
+    link("https://github.com/amorimm4theus/octane-ready", pic(
+        "oss-octane-ready", "octane-ready, plugin open source do Claude Code: API antiga em Lumen levada para Laravel Octane, "
+        "1,8x mais requisições por segundo, sem vazar dados entre clientes")),
     GAP,
     pic("sigilo", "Trabalhos sob sigilo de contrato: frotas, saúde universitária, saúde pública, ensino superior e consultoria agro"),
     GAP,
