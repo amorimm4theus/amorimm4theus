@@ -26,6 +26,8 @@
 
 <a href="https://amorim-co.de/#case-loja"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/shop-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/shop-light.svg"><img alt="Loja virtual sob medida: sua loja aberta 24 horas, com a cara da sua marca" src="assets/shop-dark.svg" width="100%"></picture></a>
 
+<a href="https://github.com/amorimm4theus/octane-ready"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/oss-octane-ready-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/oss-octane-ready-light.svg"><img alt="octane-ready, plugin open source do Claude Code: API antiga em Lumen levada para Laravel Octane, 1,8x mais requisições por segundo, sem vazar dados entre clientes" src="assets/oss-octane-ready-dark.svg" width="100%"></picture></a>
+
 <br><br>
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/sigilo-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/sigilo-light.svg"><img alt="Trabalhos sob sigilo de contrato: frotas, saúde universitária, saúde pública, ensino superior e consultoria agro" src="assets/sigilo-dark.svg" width="100%"></picture>
